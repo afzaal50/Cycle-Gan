@@ -33,7 +33,14 @@ if not os.path.exists("generator_g.1.h5"):
     st.text("Downloading generator_g.1.h5...")
     download_file(url_generator_g, "generator_g.1.h5")
 
-# Load the models from local files
+# Verify that the files exist
+if os.path.exists("generator_f.2.h5") and os.path.exists("generator_g.1.h5"):
+    st.text("Model files downloaded successfully.")
+else:
+    st.error("Model files were not downloaded successfully. Please check the URLs and try again.")
+    st.stop()
+
+# Load the models
 try:
     generator_f = tf.keras.models.load_model("generator_f.2.h5")
     generator_g = tf.keras.models.load_model("generator_g.1.h5")
