@@ -1,0 +1,7 @@
+Requiremnts
+
+
+1. StreamLit
+2. TensorFlow
+3. PIL
+4. NumPy
