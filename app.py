@@ -1,11 +1,35 @@
 import streamlit as st
 from PIL import Image
 import numpy as np
+import requests
 import tensorflow as tf
+import os
 
-# Load the CycleGAN model weights
-generator_g = tf.keras.models.load_model("C:\Users\muham\Downloads\Streamlit App\generator_g (1).h5")
-generator_f = tf.keras.models.load_model("C:\Users\muham\Downloads\Streamlit App\generator_f (2).h5")
+# URLs of the large files in the release
+url_generator_f = "https://github.com/afzaal50/Cycle-Gan/releases/download/v1.0/generator_f.h5"
+url_generator_g = "https://github.com/afzaal50/Cycle-Gan/releases/download/v1.0/generator_g.h5"
+
+def download_file(url, local_filename):
+    # Download the file from `url` and save it locally under `local_filename`
+    with requests.get(url, stream=True) as r:
+        r.raise_for_status()
+        with open(local_filename, 'wb') as f:
+            for chunk in r.iter_content(chunk_size=8192):
+                f.write(chunk)
+    return local_filename
+
+# Download the large files if they don't already exist locally
+if not os.path.exists("generator_f.h5"):
+    st.text("Downloading generator_f.h5...")
+    download_file(url_generator_f, "generator_f.h5")
+
+if not os.path.exists("generator_g.h5"):
+    st.text("Downloading generator_g.h5...")
+    download_file(url_generator_g, "generator_g.h5")
+
+# Load the models
+generator_f = tf.keras.models.load_model("generator_f.h5")
+generator_g = tf.keras.models.load_model("generator_g.h5")
 
 # Function to process images with CycleGAN
 def process_with_cyclegan(image, generator):
