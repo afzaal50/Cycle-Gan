@@ -2,19 +2,18 @@ import streamlit as st
 from PIL import Image
 import numpy as np
 import requests
-import tensorflow as tf
 import os
 
-# Ensure TensorFlow and Keras availability
+# Attempt to import TensorFlow and check version
 try:
+    import tensorflow as tf
     tf_version = tf.__version__
     keras_available = hasattr(tf, 'keras')
+    st.text(f"TensorFlow version: {tf_version}")
+    st.text(f"Keras module available: {keras_available}")
 except Exception as e:
     st.error(f"Error checking TensorFlow or Keras: {e}")
     st.stop()
-
-st.text(f"TensorFlow version: {tf_version}")
-st.text(f"Keras module available: {keras_available}")
 
 # URLs of the large files in the release
 url_generator_f = "https://github.com/afzaal50/Cycle-Gan/releases/download/v1.0/generator_f.2.h5"
