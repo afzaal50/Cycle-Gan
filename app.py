@@ -5,9 +5,16 @@ import requests
 import tensorflow as tf
 import os
 
-# Check TensorFlow and Keras
-st.text(f"TensorFlow version: {tf.__version__}")
-st.text(f"Keras module available: {hasattr(tf, 'keras')}")
+# Ensure TensorFlow and Keras availability
+try:
+    tf_version = tf.__version__
+    keras_available = hasattr(tf, 'keras')
+except Exception as e:
+    st.error(f"Error checking TensorFlow or Keras: {e}")
+    st.stop()
+
+st.text(f"TensorFlow version: {tf_version}")
+st.text(f"Keras module available: {keras_available}")
 
 # URLs of the large files in the release
 url_generator_f = "https://github.com/afzaal50/Cycle-Gan/releases/download/v1.0/generator_f.2.h5"
