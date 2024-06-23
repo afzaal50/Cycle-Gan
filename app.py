@@ -5,6 +5,10 @@ import requests
 import tensorflow as tf
 import os
 
+# Check TensorFlow and Keras
+st.text(f"TensorFlow version: {tf.__version__}")
+st.text(f"Keras module available: {hasattr(tf, 'keras')}")
+
 # URLs of the large files in the release
 url_generator_f = "https://github.com/afzaal50/Cycle-Gan/releases/download/v1.0/generator_f.2.h5"
 url_generator_g = "https://github.com/afzaal50/Cycle-Gan/releases/download/v1.0/generator_g.1.h5"
