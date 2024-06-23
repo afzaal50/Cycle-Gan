@@ -12,7 +12,13 @@ url_generator_g = "https://github.com/afzaal50/Cycle-Gan/releases/download/v1.0/
 def download_file(url, local_filename):
     # Download the file from `url` and save it locally under `local_filename`
     with requests.get(url, stream=True) as r:
-        r.raise_for_status()
+        try:
+            r.raise_for_status()
+        except requests.exceptions.HTTPError as e:
+            st.error(f"HTTPError: {e}")
+            st.error(f"Status code: {r.status_code}")
+            st.error(f"Response text: {r.text}")
+            raise
         with open(local_filename, 'wb') as f:
             for chunk in r.iter_content(chunk_size=8192):
                 f.write(chunk)
