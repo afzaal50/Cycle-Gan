@@ -25,17 +25,17 @@ def download_file(url, local_filename):
     return local_filename
 
 # Download the large files if they don't already exist locally
-if not os.path.exists("generator_f.h5"):
-    st.text("Downloading generator_f.h5...")
-    download_file(url_generator_f, "generator_f.h5")
+if not os.path.exists("generator_f.2.h5"):
+    st.text("Downloading generator_f.2.h5...")
+    download_file(url_generator_f, "generator_f.2.h5")
 
-if not os.path.exists("generator_g.h5"):
-    st.text("Downloading generator_g.h5...")
-    download_file(url_generator_g, "generator_g.h5")
+if not os.path.exists("generator_g.1.h5"):
+    st.text("Downloading generator_g.1.h5...")
+    download_file(url_generator_g, "generator_g.1.h5")
 
 # Load the models
-generator_f = tf.keras.models.load_model("generator_f.h5")
-generator_g = tf.keras.models.load_model("generator_g.h5")
+generator_f = tf.keras.models.load_model("generator_f.2.h5")
+generator_g = tf.keras.models.load_model("generator_g.1.h5")
 
 # Function to process images with CycleGAN
 def process_with_cyclegan(image, generator):
