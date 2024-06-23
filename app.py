@@ -6,8 +6,8 @@ import tensorflow as tf
 import os
 
 # URLs of the large files in the release
-url_generator_f = "https://github.com/afzaal50/Cycle-Gan/releases/download/v1.0/generator_f.h5"
-url_generator_g = "https://github.com/afzaal50/Cycle-Gan/releases/download/v1.0/generator_g.h5"
+url_generator_f = "https://github.com/afzaal50/Cycle-Gan/releases/download/v1.0/generator_f.2.h5"
+url_generator_g = "https://github.com/afzaal50/Cycle-Gan/releases/download/v1.0/generator_g.1.h5"
 
 def download_file(url, local_filename):
     # Download the file from `url` and save it locally under `local_filename`
